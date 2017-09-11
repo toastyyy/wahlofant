@@ -792,7 +792,7 @@ var questions = [
             {
                 party: 'Freie Demokratische Partei',
                 result: 'neutral',
-                reason: 'Wir Freie Demokraten wollen allen Älteren einen flexiblen Übergang in den Ruhestand ermöglichen. Dazu wollen wir ein politisch festgelegtes Renteneintrittsalter und die Hinzuverdienstgrenzen abschaffen.',
+                reason: 'Wir wollen allen Älteren einen flexiblen Übergang in den Ruhestand ermöglichen. Dazu wollen wir ein politisch festgelegtes Renteneintrittsalter und die Hinzuverdienstgrenzen abschaffen.',
             },
             {
                 party: 'Christlich Demokratische Union',
@@ -1212,7 +1212,7 @@ var questions = [
             {
                 party: 'Freie Demokratische Partei',
                 result: 'neutral',
-                reason: 'Wir Freie Demokraten wollen Wahlfreiheit für die Eltern statt einer zwingenden Ganztagsbetreuung. Jeder soll das Modell - egal ob Ganztagsschule, offene Ganztagsschule oder Halbtagsschule - wählen können, das am besten zu seinem Leben passt.',
+                reason: 'Wir wollen Wahlfreiheit für die Eltern statt einer zwingenden Ganztagsbetreuung. Jeder soll das Modell - egal ob Ganztagsschule, offene Ganztagsschule oder Halbtagsschule - wählen können, das am besten zu seinem Leben passt.',
             },
             {
                 party: 'Christlich Demokratische Union',

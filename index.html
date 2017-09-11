@@ -93,7 +93,7 @@
                 </div>
                 <div class="score-row" ng-repeat="score in scores">
                         <span class="cell party"
-                              style="background-image: url(/img/{{ getPartyImage(score.party) }});"></span>
+                              style="background-image: url(img/{{ getPartyImage(score.party) }});"></span>
                     <span class="cell {{ getPartyAttitude(q, score.party) }}" ng-repeat="q in questionList">
                         <span class="cell-score">{{ getScoreForQuestion(q, score) }}</span>
                     </span>

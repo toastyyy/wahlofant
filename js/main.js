@@ -171,7 +171,7 @@ app.controller('PollController', function($http, $scope) {
 
     /* Filter party justifications by users attitude to the current question. */
     $scope.filterResult = function(item) {
-        return (item.result == $scope.currentAttitude || item.result == 'neutral')
+        return ((item.result == $scope.currentAttitude || item.result == 'neutral') && item.reason != "")
     };
 
     /* Toggle the selection of a parties justification. */
@@ -208,7 +208,7 @@ app.controller('PollController', function($http, $scope) {
         var scores = {};
 
         function addScore(party, question, score) {
-            if(party in Object.keys(scores)) {
+            if(Object.keys(scores).indexOf(party) != -1) {
                 scores[party].scores.push({questionId: question.id, score: score});
             } else {
                 scores[party] = {
@@ -313,6 +313,7 @@ app.controller('PollController', function($http, $scope) {
     };
 
     $scope.getTotalScore = function(scoreObj) {
+        console.log(scoreObj);
         var total = 0;
         for(var i in scoreObj.scores) {
             total += scoreObj.scores[i].score;
