@@ -1,5 +1,6 @@
 # wahlofant
 Alternative zum Wahl-O-Mat der Bundeszentrale für politische Bildung (bpb)
+[Zum Wahl-O-Fant](https://toastyyy.github.io/wahlofant/)
 
 ## Was ist anders als beim Wahlomat?
 
