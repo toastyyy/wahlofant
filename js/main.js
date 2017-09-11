@@ -13,8 +13,10 @@ app.controller('PollController', function($http, $scope) {
     $scope.state = "loading"; // current state of the application, either "loading", "loaded" or "error".
     $scope.topics = []; // topics of questions. Will be automatically populated if question have been loaded.
     $scope.currentQuestion = -1; // current question index. -1 represents topic selection which is the first step.
-    $scope.questionResults = []; // collects all user inputs for questions.
+    $scope.questionAttitude = {}; // collects all attitudes of the user.
+    $scope.questionResults = []; // collects all user inputs for party thesis.
     $scope.currentAttitude = ""; // attitude to the current question, can be "yes" or "no"
+    $scope.parties = []; // List of all parties
 
     /* indicates step inside a question. first step is always "attitude" (where to user select to be or be not ACK
     with a question). Second step is always justification where the user selects justifications from parties. */
@@ -36,6 +38,9 @@ app.controller('PollController', function($http, $scope) {
                     questions[i].answers[j].id = answerIndex;
                     questions[i].answers[j].questionId = questionIndex;
                     answerIndex++;
+                    if($scope.parties.indexOf(questions[i].answers[j].party) == -1) {
+                        $scope.parties.push(questions[i].answers[j].party);
+                    }
                 }
                 questionIndex++;
             }
@@ -149,6 +154,7 @@ app.controller('PollController', function($http, $scope) {
     /* User is ACK with a question. */
     $scope.pro = function(question) {
         $scope.currentAttitude = "yes";
+        $scope.questionAttitude[""+question.id] = "yes";
         unselectByQuestionAndResult(question.id, "no");
         unselectByQuestionAndResult(question.id, "other");
         $scope.questionMode = "justification";
@@ -157,6 +163,7 @@ app.controller('PollController', function($http, $scope) {
     /* User is not ACK with a question. */
     $scope.con = function(question) {
         $scope.currentAttitude = "no";
+        $scope.questionAttitude[""+question.id] = "no";
         unselectByQuestionAndResult(question.id, "yes");
         unselectByQuestionAndResult(question.id, "other");
         $scope.questionMode = "justification";
@@ -164,6 +171,7 @@ app.controller('PollController', function($http, $scope) {
 
     /* User does not care about a question. */
     $scope.nvm = function(question) {
+        $scope.questionAttitude[""+question.id] = "nvm";
         unselectByQuestionAndResult(question.id, "yes");
         unselectByQuestionAndResult(question.id, "no");
         $scope.nextQuestion();
@@ -219,21 +227,26 @@ app.controller('PollController', function($http, $scope) {
         }
 
         for(var i in $scope.questionList) {
-            var results = $scope.selectedAnswersForQuestion($scope.questionList[i].id);
-            if(results.length > 0) {
-                var attitude = results[0].result;
-                for(var j in $scope.questionList[i].answers) {
-                    if($scope.isAnswerActive($scope.questionList[i].answers[j])) {
-                        addScore($scope.questionList[i].answers[j].party, $scope.questionList[i], 5);
-                    } else if($scope.questionList[i].answers[j].result == attitude) {
-                        addScore($scope.questionList[i].answers[j].party, $scope.questionList[i], 2);
-                    } else {
-                        addScore($scope.questionList[i].answers[j].party, $scope.questionList[i], -3);
+            for(var p in $scope.parties) {
+                var isAttitudeEqual = $scope.getPartyAttitude($scope.questionList[i], $scope.parties[p]) == $scope.getAttitude($scope.questionList[i]);
+                if(isAttitudeEqual) {
+                    var partiesAnswerSelected = false;
+                    for(var j in $scope.questionList[i].answers) {
+                        if ($scope.isAnswerActive($scope.questionList[i].answers[j]) && $scope.questionList[i].answers[j].party == $scope.parties[p]) {
+                            partiesAnswerSelected = true;
+                            break;
+                        }
                     }
+                    if(partiesAnswerSelected) {
+                        addScore($scope.parties[p], $scope.questionList[i], 5);
+                    } else {
+                        addScore($scope.parties[p], $scope.questionList[i], 2);
+                    }
+                } else {
+                    addScore($scope.parties[p], $scope.questionList[i], -3);
                 }
             }
         }
-        console.log(scores);
         return scores;
     };
 
@@ -277,7 +290,12 @@ app.controller('PollController', function($http, $scope) {
     }
 
 	$scope.getAttitude = function(question) {
-        var results = $scope.selectedAnswersForQuestion(question.id);
+	    if(Object.keys($scope.questionAttitude).indexOf(""+question.id) >= 0) {
+	        return $scope.questionAttitude[question.id];
+        } else {
+	        return "noopinion";
+        }
+        /*var results = $scope.selectedAnswersForQuestion(question.id);
         var attitude = "ambiguous";
         if(results.length > 0) {
             if(isAttitudeDistinct(results)) {
@@ -286,7 +304,7 @@ app.controller('PollController', function($http, $scope) {
             return attitude;
         } else {
             return "noopinion"
-        }
+        }*/
 
     };
 
@@ -313,7 +331,6 @@ app.controller('PollController', function($http, $scope) {
     };
 
     $scope.getTotalScore = function(scoreObj) {
-        console.log(scoreObj);
         var total = 0;
         for(var i in scoreObj.scores) {
             total += scoreObj.scores[i].score;

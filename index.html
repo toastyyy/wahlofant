@@ -75,9 +75,9 @@
         </div>
 
         <div class="container-footer">
-                    <span class="footer-info">
-                        Frage {{ $index+1 }} von {{ questionList.length }}
-                    </span>
+            <span class="footer-info">
+                Frage {{ $index+1 }} von {{ questionList.length }}
+            </span>
             <button ng-click="nextQuestion();">Weiter &raquo;</button>
             <button ng-click="lastQuestion();">&laquo; Zurück</button>
         </div>
@@ -89,17 +89,21 @@
             <div class="score-list">
                 <div class="score-row">
                     <span class="cell you">DU</span>
+                    <span class="cell total">
+                        Gesamt
+                    </span>
                     <span class="cell {{ getAttitude(q) }}" ng-repeat="q in questionList"></span>
                 </div>
-                <div class="score-row" ng-repeat="score in scores">
+                <div class="score-row" ng-repeat="party in parties">
                         <span class="cell party"
-                              style="background-image: url(img/{{ getPartyImage(score.party) }});"></span>
-                    <span class="cell {{ getPartyAttitude(q, score.party) }}" ng-repeat="q in questionList">
-                        <span class="cell-score">{{ getScoreForQuestion(q, score) }}</span>
-                    </span>
+                              style="background-image: url(img/{{ getPartyImage(party) }});"></span>
                     <span class="cell total">
-                        {{ getTotalScore(score) }}
+                        {{ getTotalScore(scores[party]) }}
                     </span>
+                    <span class="cell {{ getPartyAttitude(q, party) }}" ng-repeat="q in questionList">
+                        <span class="cell-score">{{ getScoreForQuestion(q, scores[party]) }}</span>
+                    </span>
+
                 </div>
             </div>
             <button ng-click="lastQuestion();">&laquo; Zurück</button>
