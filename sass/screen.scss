@@ -10,6 +10,7 @@
      text-rendering: optimizeLegibility;
      max-height: 100vh;
      height: 100vh;
+     width: 100vw;
      max-width: 100vw;
      overflow: hidden;
  }
@@ -308,4 +309,26 @@ button {
     text-align: center;
     font-size: 10px;
     left: 0;
+}
+
+@media (max-width:640px) {
+    h2 {
+        font-size: 1.3rem;
+    }
+    ul.choice-list.multiple {
+        li {
+            letter-spacing: 0px;
+            font-size: 0.9rem;
+            padding: 4px 8px;
+            margin: 3px;
+        }
+    }
+    .footer-info {
+        height: 30px;
+        line-height: 30px;
+        display: block;
+        float: none;
+        width: 100%;
+        font-size: 0.9rem;
+    }
 }
