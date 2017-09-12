@@ -96,7 +96,7 @@ small {
     &.active {
         top: 50%;
         opacity: 1;
-        z-index: 1;
+        z-index: 10;
     }
 
     &.inactive {
@@ -316,6 +316,7 @@ button {
 @media (max-width:640px) {
     h2 {
         font-size: 1.3rem;
+        margin-bottom: .7rem;
     }
     ul.choice-list.multiple {
         li {
@@ -332,5 +333,26 @@ button {
         float: none;
         width: 100%;
         font-size: 0.9rem;
+    }
+
+    .logo {
+        height: 45px;
+        background-position: center center;
+    }
+
+
+
+    .container {
+        .content {
+            max-height: 40vh;
+        }
+        .container-footer {
+             margin-top: 6px;
+            height: 24px;
+         }
+    }
+
+    .detail-list {
+        margin-top: 6px;
     }
 }

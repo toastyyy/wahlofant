@@ -183,7 +183,7 @@ small {
 .container.active {
   top: 50%;
   opacity: 1;
-  z-index: 1;
+  z-index: 10;
 }
 /* line 102, ../sass/screen.scss */
 .container.inactive {
@@ -432,9 +432,10 @@ button:hover {
   /* line 317, ../sass/screen.scss */
   h2 {
     font-size: 1.3rem;
+    margin-bottom: .7rem;
   }
 
-  /* line 321, ../sass/screen.scss */
+  /* line 322, ../sass/screen.scss */
   ul.choice-list.multiple li {
     letter-spacing: 0px;
     font-size: 0.9rem;
@@ -442,7 +443,7 @@ button:hover {
     margin: 3px;
   }
 
-  /* line 328, ../sass/screen.scss */
+  /* line 329, ../sass/screen.scss */
   .footer-info {
     height: 30px;
     line-height: 30px;
@@ -450,5 +451,26 @@ button:hover {
     float: none;
     width: 100%;
     font-size: 0.9rem;
+  }
+
+  /* line 338, ../sass/screen.scss */
+  .logo {
+    height: 45px;
+    background-position: center center;
+  }
+
+  /* line 346, ../sass/screen.scss */
+  .container .content {
+    max-height: 40vh;
+  }
+  /* line 349, ../sass/screen.scss */
+  .container .container-footer {
+    margin-top: 6px;
+    height: 24px;
+  }
+
+  /* line 355, ../sass/screen.scss */
+  .detail-list {
+    margin-top: 6px;
   }
 }

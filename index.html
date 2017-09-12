@@ -6,6 +6,7 @@
     <meta name="robots" content="noindex,nofollow">
     <title>WahlOfant</title>
     <meta name="description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -124,6 +125,15 @@
     });
 
     document.body.appendChild(pattern.canvas());
+
+    // hide address bar for mobile devices
+    window.addEventListener("load",function() {
+        // Set a timeout...
+        setTimeout(function(){
+            // Hide the address bar!
+            window.scrollTo(0, 1);
+        }, 0);
+    });
 </script>
 </body>
 </html>
