@@ -166,7 +166,7 @@ small {
 /* line 82, ../sass/screen.scss */
 .container {
   width: 800px;
-  z-index: 1;
+  z-index: -1;
   max-width: 92%;
   background-color: #fff;
   box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.23);
@@ -183,24 +183,26 @@ small {
 .container.active {
   top: 50%;
   opacity: 1;
+  z-index: 1;
 }
-/* line 101, ../sass/screen.scss */
+/* line 102, ../sass/screen.scss */
 .container.inactive {
   top: -20%;
   opacity: 0;
+  z-index: 0;
 }
-/* line 106, ../sass/screen.scss */
+/* line 108, ../sass/screen.scss */
 .container .container-footer {
   margin-top: 30px;
   height: 42px;
 }
 @media (max-width: 768px) {
-  /* line 106, ../sass/screen.scss */
+  /* line 108, ../sass/screen.scss */
   .container .container-footer {
     margin-top: 20px;
   }
 }
-/* line 113, ../sass/screen.scss */
+/* line 115, ../sass/screen.scss */
 .container .container-footer .footer-info {
   display: inline-block;
   float: left;
@@ -211,7 +213,7 @@ small {
   font-weight: 300;
 }
 
-/* line 125, ../sass/screen.scss */
+/* line 127, ../sass/screen.scss */
 h2 {
   font-family: Roboto, Arial, sans-serif;
   font-weight: 300;
@@ -220,17 +222,17 @@ h2 {
   margin-bottom: 2rem;
 }
 @media (max-width: 768px) {
-  /* line 125, ../sass/screen.scss */
+  /* line 127, ../sass/screen.scss */
   h2 {
     font-size: 1.5rem;
   }
 }
 
-/* line 136, ../sass/screen.scss */
+/* line 138, ../sass/screen.scss */
 .choice-list {
   text-align: center;
 }
-/* line 138, ../sass/screen.scss */
+/* line 140, ../sass/screen.scss */
 .choice-list li {
   text-align: left;
   display: inline-block;
@@ -244,15 +246,15 @@ h2 {
   color: #fff;
   background-color: #F9633B;
 }
-/* line 150, ../sass/screen.scss */
+/* line 152, ../sass/screen.scss */
 .choice-list li:hover {
   background-color: #e15935;
 }
-/* line 154, ../sass/screen.scss */
+/* line 156, ../sass/screen.scss */
 .choice-list li.active {
   background-color: #39cc39;
 }
-/* line 157, ../sass/screen.scss */
+/* line 159, ../sass/screen.scss */
 .choice-list li small {
   font-size: 0.6rem;
   font-weight: 400;
@@ -260,7 +262,7 @@ h2 {
   top: -5px;
 }
 @media (max-width: 768px) {
-  /* line 138, ../sass/screen.scss */
+  /* line 140, ../sass/screen.scss */
   .choice-list li {
     font-size: 1rem;
     padding: 6px 10px;
@@ -268,7 +270,7 @@ h2 {
   }
 }
 
-/* line 171, ../sass/screen.scss */
+/* line 173, ../sass/screen.scss */
 button {
   background-color: #396acc;
   color: #fff;
@@ -283,12 +285,12 @@ button {
   cursor: pointer;
   outline: none;
 }
-/* line 184, ../sass/screen.scss */
+/* line 186, ../sass/screen.scss */
 button:hover {
   background-color: #2f54a7;
 }
 @media (max-width: 768px) {
-  /* line 171, ../sass/screen.scss */
+  /* line 173, ../sass/screen.scss */
   button {
     height: 34px;
     line-height: 34px;
@@ -297,11 +299,11 @@ button:hover {
   }
 }
 
-/* line 197, ../sass/screen.scss */
+/* line 199, ../sass/screen.scss */
 .detail-list {
   margin-top: 25px;
 }
-/* line 199, ../sass/screen.scss */
+/* line 201, ../sass/screen.scss */
 .detail-list > div {
   position: relative;
   padding: 20px 0px 10px 50px;
@@ -314,20 +316,20 @@ button:hover {
   transition: background-color .2s;
   transition-timing-function: ease-in-out;
 }
-/* line 200, ../sass/screen.scss */
+/* line 202, ../sass/screen.scss */
 .detail-list > div.active {
   color: #2fa12f;
   background-color: #e2ffdb;
 }
-/* line 203, ../sass/screen.scss */
+/* line 205, ../sass/screen.scss */
 .detail-list > div.active:before {
   color: #278127;
 }
-/* line 217, ../sass/screen.scss */
+/* line 219, ../sass/screen.scss */
 .detail-list > div:hover {
   background-color: rgba(80, 80, 80, 0.1);
 }
-/* line 220, ../sass/screen.scss */
+/* line 222, ../sass/screen.scss */
 .detail-list > div:before {
   position: absolute;
   top: 50%;
@@ -339,24 +341,24 @@ button:hover {
   color: #777;
 }
 
-/* line 233, ../sass/screen.scss */
+/* line 235, ../sass/screen.scss */
 .content {
   min-height: 200px;
   max-height: 50vh;
   overflow: auto;
 }
 
-/* line 239, ../sass/screen.scss */
+/* line 241, ../sass/screen.scss */
 .score-list {
   overflow: auto;
 }
-/* line 241, ../sass/screen.scss */
+/* line 243, ../sass/screen.scss */
 .score-list .score-row {
   height: 42px;
   padding: 3px 0px;
   white-space: nowrap;
 }
-/* line 245, ../sass/screen.scss */
+/* line 247, ../sass/screen.scss */
 .score-list .score-row .cell {
   position: relative;
   display: inline-block;
@@ -370,49 +372,49 @@ button:hover {
   font-weight: bold;
   text-align: center;
 }
-/* line 258, ../sass/screen.scss */
+/* line 260, ../sass/screen.scss */
 .score-list .score-row .cell.total {
   width: 84px;
 }
-/* line 262, ../sass/screen.scss */
+/* line 264, ../sass/screen.scss */
 .score-list .score-row .cell.party {
   background-size: cover;
   background-position: center center;
 }
-/* line 268, ../sass/screen.scss */
+/* line 270, ../sass/screen.scss */
 .score-list .score-row .cell.neutral::after {
   content: '-';
   color: #777;
 }
-/* line 274, ../sass/screen.scss */
+/* line 276, ../sass/screen.scss */
 .score-list .score-row .cell.yes {
   background-color: #d8e9cf;
 }
-/* line 276, ../sass/screen.scss */
+/* line 278, ../sass/screen.scss */
 .score-list .score-row .cell.yes::after {
   content: '\2713';
   color: #2fa12f;
 }
-/* line 282, ../sass/screen.scss */
+/* line 284, ../sass/screen.scss */
 .score-list .score-row .cell.no {
   background-color: #e9d6d2;
 }
-/* line 284, ../sass/screen.scss */
+/* line 286, ../sass/screen.scss */
 .score-list .score-row .cell.no::after {
   content: '\2718';
   color: #F9633B;
 }
-/* line 290, ../sass/screen.scss */
+/* line 292, ../sass/screen.scss */
 .score-list .score-row .cell.ambiguous {
   background-color: #f4ece3;
   color: #f4e668;
 }
-/* line 293, ../sass/screen.scss */
+/* line 295, ../sass/screen.scss */
 .score-list .score-row .cell.ambiguous::after {
   content: '~';
 }
 
-/* line 301, ../sass/screen.scss */
+/* line 303, ../sass/screen.scss */
 .cell-score {
   height: 14px;
   line-height: 14px;
@@ -427,12 +429,12 @@ button:hover {
 }
 
 @media (max-width: 640px) {
-  /* line 315, ../sass/screen.scss */
+  /* line 317, ../sass/screen.scss */
   h2 {
     font-size: 1.3rem;
   }
 
-  /* line 319, ../sass/screen.scss */
+  /* line 321, ../sass/screen.scss */
   ul.choice-list.multiple li {
     letter-spacing: 0px;
     font-size: 0.9rem;
@@ -440,7 +442,7 @@ button:hover {
     margin: 3px;
   }
 
-  /* line 326, ../sass/screen.scss */
+  /* line 328, ../sass/screen.scss */
   .footer-info {
     height: 30px;
     line-height: 30px;
