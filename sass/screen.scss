@@ -154,7 +154,7 @@ h2 {
         }
 
         &.active {
-            background-color: #39cc39;
+            background-color: #39cc39 !important;
         }
         small {
             font-size: 0.6rem;
@@ -315,7 +315,7 @@ button {
 
 @media (max-width:640px) {
     h2 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         margin-bottom: .7rem;
     }
     ul.choice-list.multiple {
@@ -327,8 +327,8 @@ button {
         }
     }
     .footer-info {
-        height: 30px;
-        line-height: 30px;
+        height: 30px !important;
+        line-height: 30px !important;
         display: block;
         float: none;
         width: 100%;
@@ -336,11 +336,10 @@ button {
     }
 
     .logo {
+        top: 0px;
         height: 45px;
         background-position: center center;
     }
-
-
 
     .container {
         .content {
@@ -353,6 +352,17 @@ button {
     }
 
     .detail-list {
+        small {
+            color: #999;
+        }
         margin-top: 6px;
+        &>div {
+            margin: 8px 0px;
+            font-size: 0.9rem;
+            padding: 10px 0px 10px 34px;
+            &::before {
+                font-size: 1.3rem;
+            }
+        }
     }
 }

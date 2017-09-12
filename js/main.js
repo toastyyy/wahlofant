@@ -250,6 +250,10 @@ app.controller('PollController', function($http, $scope) {
         return scores;
     };
 
+    $scope.orderTotalScore = function(partyName) {
+        return $scope.getTotalScore($scope.scores[partyName])
+    };
+
     function unselectByQuestionAndResult(questionId, result) {
         var removedEntry = true;
         while(removedEntry) {

@@ -252,7 +252,7 @@ h2 {
 }
 /* line 156, ../sass/screen.scss */
 .choice-list li.active {
-  background-color: #39cc39;
+  background-color: #39cc39 !important;
 }
 /* line 159, ../sass/screen.scss */
 .choice-list li small {
@@ -431,7 +431,7 @@ button:hover {
 @media (max-width: 640px) {
   /* line 317, ../sass/screen.scss */
   h2 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-bottom: .7rem;
   }
 
@@ -445,8 +445,8 @@ button:hover {
 
   /* line 329, ../sass/screen.scss */
   .footer-info {
-    height: 30px;
-    line-height: 30px;
+    height: 30px !important;
+    line-height: 30px !important;
     display: block;
     float: none;
     width: 100%;
@@ -455,22 +455,37 @@ button:hover {
 
   /* line 338, ../sass/screen.scss */
   .logo {
+    top: 0px;
     height: 45px;
     background-position: center center;
   }
 
-  /* line 346, ../sass/screen.scss */
+  /* line 345, ../sass/screen.scss */
   .container .content {
     max-height: 40vh;
   }
-  /* line 349, ../sass/screen.scss */
+  /* line 348, ../sass/screen.scss */
   .container .container-footer {
     margin-top: 6px;
     height: 24px;
   }
 
-  /* line 355, ../sass/screen.scss */
+  /* line 354, ../sass/screen.scss */
   .detail-list {
     margin-top: 6px;
+  }
+  /* line 355, ../sass/screen.scss */
+  .detail-list small {
+    color: #999;
+  }
+  /* line 359, ../sass/screen.scss */
+  .detail-list > div {
+    margin: 8px 0px;
+    font-size: 0.9rem;
+    padding: 10px 0px 10px 34px;
+  }
+  /* line 363, ../sass/screen.scss */
+  .detail-list > div::before {
+    font-size: 1.3rem;
   }
 }

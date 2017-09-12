@@ -95,7 +95,7 @@
                     </span>
                     <span class="cell {{ getAttitude(q) }}" ng-repeat="q in questionList"></span>
                 </div>
-                <div class="score-row" ng-repeat="party in parties">
+                <div class="score-row" ng-repeat="party in parties | orderBy: orderTotalScore : true">
                         <span class="cell party"
                               style="background-image: url(img/{{ getPartyImage(party) }});"></span>
                     <span class="cell total">
