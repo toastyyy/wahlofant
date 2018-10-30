@@ -299,17 +299,6 @@ app.controller('PollController', function($http, $scope) {
         } else {
 	        return "noopinion";
         }
-        /*var results = $scope.selectedAnswersForQuestion(question.id);
-        var attitude = "ambiguous";
-        if(results.length > 0) {
-            if(isAttitudeDistinct(results)) {
-                attitude = results[0].result;
-            }
-            return attitude;
-        } else {
-            return "noopinion"
-        }*/
-
     };
 
     $scope.getPartyAttitude = function(question, party) {
