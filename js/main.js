@@ -44,12 +44,15 @@ app.controller('PollController', function($http, $scope) {
                 var answers = [];
                 for(var i = 0; i < opinions.length; i++) {
                     if(opinions[i].statement == statementId && opinions[i].answer < 2) {
-                        answers.push({
-                            id : opinions[i].id,
-                            party : getParty(opinions[i].party).name,
-                            result : opinions[i].answer == 0 ? 'yes' : 'no',
-                            reason : getComment(opinions[i].comment).text
-                        });
+                        var reasonText = getComment(opinions[i].comment).text;
+                        if(reasonText != 'Zu dieser These hat die Partei keine Begründung vorgelegt.') {
+                            answers.push({
+                                id : opinions[i].id,
+                                party : getParty(opinions[i].party).name,
+                                result : opinions[i].answer == 0 ? 'yes' : 'no',
+                                reason : getComment(opinions[i].comment).text
+                            });
+                        }
                     }
                 }
                 return answers;
