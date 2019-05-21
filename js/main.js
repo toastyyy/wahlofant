@@ -9,7 +9,16 @@
 
 var app = angular.module('wahlofantApp', []);
 var CURRENT_SOURCE = 'europa';
-
+var partyImageMap = {
+    "CDU / CSU" : "cdu.png",
+    "SPD" : "spd.png",
+    "GRÜNE" : "gruene.jpg",
+    "DIE LINKE" : "linke.png",
+    "AfD" : "afd.png",
+    "FDP" : "fdp.jpg",
+    "PIRATEN" : "piraten.png",
+    "NPD" : "npd.png",
+};
 app.controller('PollController', function($http, $scope) {
     $scope.state = "loading"; // current state of the application, either "loading", "loaded" or "error".
     $scope.topics = []; // topics of questions. Will be automatically populated if question have been loaded.
@@ -57,7 +66,12 @@ app.controller('PollController', function($http, $scope) {
                 }
                 return answers;
             };
-            $scope.parties = parties;
+
+            var partyNames = [];
+            for(var i = 0; i < parties.length; i++) {
+                partyNames.push(parties[i].name);
+            }
+            $scope.parties = partyNames;
 
             for(var i = 0; i < statements.length; i++) {
                 var cat = getCategory(statements[i].category);
@@ -313,6 +327,10 @@ app.controller('PollController', function($http, $scope) {
         }
         return results;
     };
+
+    $scope.hasPartyImage = function(name) {
+        return Object.keys(partyImageMap).indexOf(name) >= 0;
+    };
 	
 	$scope.getPartyImage = function(name) {
 		return partyImageMap[name];
@@ -352,8 +370,10 @@ app.controller('PollController', function($http, $scope) {
     };
 
     $scope.getScoreForQuestion = function(question, scoreObj) {
+
         for(var i in scoreObj.scores) {
             if(scoreObj.scores[i].questionId == question.id) {
+                console.log(scoreObj.scores[i]);
                 return scoreObj.scores[i].score;
             }
         }

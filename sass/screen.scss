@@ -240,6 +240,7 @@ button {
 
 .score-list {
     overflow: auto;
+    height: 70vh;
 	.score-row {
         height: 42px;
         padding: 3px 0px;
@@ -264,6 +265,12 @@ button {
             &.party {
                 background-size: cover;
                 background-position: center center;
+                word-break: break-all;
+                white-space: pre-wrap;
+                small {
+                    font-size: 0.7rem;
+                    font-weight: 300;
+                }
             }
 
             &.neutral {

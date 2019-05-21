@@ -51,7 +51,7 @@
                     <span class="footer-info">
                         Geschätzte Dauer: {{ calculateMinutes() }} Minuten
                     </span>
-            <button ng-show="selectedTopics().length >= 5" ng-click="calculateQuestionList();">Weiter</button>
+            <button ng-show="selectedTopics().length >= 1" ng-click="calculateQuestionList();">Weiter</button>
         </div>
 
     </div>
@@ -96,8 +96,9 @@
                     <span class="cell {{ getAttitude(q) }}" ng-repeat="q in questionList"></span>
                 </div>
                 <div class="score-row" ng-repeat="party in parties | orderBy: orderTotalScore : true">
-                        <span class="cell party"
+                        <span title="{{party}}" class="cell party" ng-if="hasPartyImage(party)"
                               style="background-image: url(img/{{ getPartyImage(party) }});"></span>
+                    <span title="{{party}}" class="cell party" ng-if="!hasPartyImage(party)"><small>{{party}}</small></span>
                     <span class="cell total">
                         {{ getTotalScore(scores[party]) }}
                     </span>
