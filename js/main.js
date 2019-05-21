@@ -8,6 +8,7 @@
  */
 
 var app = angular.module('wahlofantApp', []);
+var CURRENT_SOURCE = 'europa';
 
 app.controller('PollController', function($http, $scope) {
     $scope.state = "loading"; // current state of the application, either "loading", "loaded" or "error".
@@ -17,6 +18,7 @@ app.controller('PollController', function($http, $scope) {
     $scope.questionResults = []; // collects all user inputs for party thesis.
     $scope.currentAttitude = ""; // attitude to the current question, can be "yes" or "no"
     $scope.parties = []; // List of all parties
+    $scope.questions = []; // List of all questions with answers
 
     /* indicates step inside a question. first step is always "attitude" (where to user select to be or be not ACK
     with a question). Second step is always justification where the user selects justifications from parties. */
@@ -28,26 +30,45 @@ app.controller('PollController', function($http, $scope) {
     /* Load questions when questions.js has been loaded. */
     var questionLoadInterval = null;
     var checkQuestionsLoaded = function() {
-        if(typeof questions != 'undefined') {
-            /* Add indices for questions and their answers. */
-            var questionIndex = 1;
-            var answerIndex = 1;
-            for(var i in questions) {
-                questions[i].id = questionIndex;
-                for(var j in questions[i].answers) {
-                    questions[i].answers[j].id = answerIndex;
-                    questions[i].answers[j].questionId = questionIndex;
-                    answerIndex++;
-                    if($scope.parties.indexOf(questions[i].answers[j].party) == -1) {
-                        $scope.parties.push(questions[i].answers[j].party);
+        if(typeof categories != 'undefined' && typeof comments != 'undefined' && typeof opinions != 'undefined'
+            && typeof overview != 'undefined' && typeof parties != 'undefined' && typeof statements != 'undefined') {
+
+            var getCategory = function(id) { for(var i = 0; i < categories.length; i++) { if(categories[i].id == id) return categories[i]; } return null; };
+            var getParty = function(id) { for(var i = 0; i < parties.length; i++) { if(parties[i].id == id) return parties[i]; } return null; };
+            var getStatement = function(id) { for(var i = 0; i < statements.length; i++) { if(statements[i].id == id) return statements[i]; } return null; };
+            var getOpinion = function(id) { for(var i = 0; i < opinions.length; i++) { if(opinions[i].id == id) return opinions[i]; } return null; };
+            var getComment = function(id) { for(var i = 0; i < comments.length; i++) { if(comments[i].id == id) return comments[i]; } return null; };
+
+
+            var getAnswers = function(statementId) {
+                var answers = [];
+                for(var i = 0; i < opinions.length; i++) {
+                    if(opinions[i].statement == statementId && opinions[i].answer < 2) {
+                        answers.push({
+                            id : opinions[i].id,
+                            party : getParty(opinions[i].party).name,
+                            result : opinions[i].answer == 0 ? 'yes' : 'no',
+                            reason : getComment(opinions[i].comment).text
+                        });
                     }
                 }
-                questionIndex++;
+                return answers;
+            };
+            $scope.parties = parties;
+
+            for(var i = 0; i < statements.length; i++) {
+                var cat = getCategory(statements[i].category);
+                var currentQuestion = {
+                    "id" : statements[i].id,
+                    "category" : (cat != null) ? cat.label : 'Unbekannt',
+                    "thesis" : statements[i].text,
+                    "title" : statements[i].label,
+                    "answers" : getAnswers(statements[i].id)
+                };
+                $scope.questions.push(currentQuestion);
             }
-            $scope.questions = questions;
             $scope.topics = $scope.getTopics(); // populate topics
             $scope.state = "loaded"; // app is ready for the user
-            console.info(questions.length + " questions have been loaded.");
             $scope.$digest(); // call digest circle as we are in interval so angular does not notice the changes we made
             clearInterval(questionLoadInterval);
         }
