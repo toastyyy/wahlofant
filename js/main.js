@@ -130,12 +130,25 @@ app.controller('PollController', function($http, $scope) {
     /* Calculate the expected duration of quiz by the total number of questions. */
     $scope.calculateMinutes = function() {
         var topics = $scope.selectedTopics();
-        var numQuestions = 0;
+        var questions = [];
         for(var i in topics) {
-            numQuestions += topics[i].numberOfQuestions;
+            for(var j in $scope.questions) {
+                if($scope.questions[j].category == topics[i].name) {
+                    questions.push($scope.questions[j]);
+                }
+            }
+        }
+        $scope.questionList = questions;
+
+        var wordCount = 0;
+        for(var i = 0; i < questions.length; i++) {
+            wordCount += questions[i].thesis.split(' ').length;
+            for(var j = 0; j < questions[i].answers.length; j++) {
+                wordCount += questions[i].answers[j].reason.split(' ').length * 0.35;
+            }
         }
 
-        return Math.ceil(numQuestions * 0.65);
+        return Math.ceil(wordCount / 120);
     };
 
     /* Calculate the question list by the users selected topics. */
